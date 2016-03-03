@@ -1,1 +1,0 @@
-D:\bwSyncAndShare\Programmieren\PhoneGap\hello\platforms\windows\CordovaApp.Windows.jsproj;neutral
