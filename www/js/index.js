@@ -27,7 +27,6 @@ function onDeviceReady() {
 	
 	// Register for accelerometer events.
 	registerAccelerometer();
-	alert(macAddress);
 	// Check bonded devices. (Note: This does not start a BT scan, it only lists the bonded devices.)
 	bluetoothSerial.list(listSuccess, listFailure);
 	
@@ -66,7 +65,7 @@ function registerAccelerometer() {
 
 // Gets called when list of bonded devices was received.
 function listSuccess(pairedDevices) {	
-
+	alert("list success");
 	// Loop through devices and loop for device with name "ledpi-teco".
 	// This has no error handling! When the devices are not paired, it won't work!
 	for(var i = 0; i < pairedDevices.length ; i++){
@@ -74,6 +73,7 @@ function listSuccess(pairedDevices) {
 		if(item.name === "ledpi-teco"){
 			macAddress = item.id;
 		} 
+		alert('Bonded device: ' + item.name);
 		console.log('Bonded device: ' + item.name);
 	}
 	alert(macAddress);
@@ -86,6 +86,7 @@ function listSuccess(pairedDevices) {
 
 // Called when listing of bonded devices fails.
 function listFailure() {	
+	alert("List failure");
 	console.log('Listing bonded devices failed.');
 }
 
