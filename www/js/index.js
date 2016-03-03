@@ -24,12 +24,12 @@ function onDeviceReady() {
 	var receivedElement = parentElement.querySelector('.received');
 	listeningElement.setAttribute('style', 'display:none;');
 	receivedElement.setAttribute('style', 'display:block;');
-	
+	alert("beforeserial");
 	// Register for accelerometer events.
 	registerAccelerometer();
 	// Check bonded devices. (Note: This does not start a BT scan, it only lists the bonded devices.)
 	bluetoothSerial.list(listSuccess, listFailure);
-	
+	alert("afterserial");
 	console.log('Received Events: ' + 'deviceready');
 }
 
