@@ -1,51 +1,67 @@
-/*
- * Licensed to the Apache Software Foundation (ASF) under one
- * or more contributor license agreements.  See the NOTICE file
- * distributed with this work for additional information
- * regarding copyright ownership.  The ASF licenses this file
- * to you under the Apache License, Version 2.0 (the
- * "License"); you may not use this file except in compliance
- * with the License.  You may obtain a copy of the License at
- *
- * http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing,
- * software distributed under the License is distributed on an
- * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
- * KIND, either express or implied.  See the License for the
- * specific language governing permissions and limitations
- * under the License.
- */
-var app = {
-    // Application Constructor
-    initialize: function() {
-        this.bindEvents();
-    },
-    // Bind Event Listeners
-    //
-    // Bind any events that are required on startup. Common events are:
-    // 'load', 'deviceready', 'offline', and 'online'.
-    bindEvents: function() {
-        document.addEventListener('deviceready', this.onDeviceReady, false);
-    },
-    // deviceready Event Handler
-    //
-    // The scope of 'this' is the event. In order to call the 'receivedEvent'
-    // function, we must explicitly call 'app.receivedEvent(...);'
-    onDeviceReady: function() {
-        app.receivedEvent('deviceready');
-    },
-    // Update DOM on a Received Event
-    receivedEvent: function(id) {
-        var parentElement = document.getElementById(id);
-        var listeningElement = parentElement.querySelector('.listening');
-        var receivedElement = parentElement.querySelector('.received');
+// UUIDs for the button service and characteristic
+var BUTTON_SERVICE_UUID = "FFE0";
+var BUTTON_CHARACTERISTIC_UUID = "FFE1";
 
-        listeningElement.setAttribute('style', 'display:none;');
-        receivedElement.setAttribute('style', 'display:block;');
+// Start listening for deviceready event.
+document.addEventListener('deviceready', onDeviceReady, false);
 
-        console.log('Received Event: ' + id);
-    }
-};
+function onDeviceReady() {
+	// For this plugin, we'd have to use the CLI or PhoneGap Build
+	// (https://github.com/katzer/cordova-plugin-background-mode)
+	// window.plugin.backgroundMode.enable();
+}
 
-app.initialize();
+// Check if BLE is enabled and available, then start BLE scan.
+function scanAndConnect() {
+	ble.isEnabled(bleEnabled, bleDisabled);
+}
+
+function bleDisabled() {
+	alert("Please enable Bluetooth first.");
+}
+
+// BLE is enabled, start scan for 5 seconds.
+function bleEnabled() {
+	ble.scan([], 5, function(device) {
+		// Check if the device is named "SensorTag" and connect if it is.
+		if (device.name === "SensorTag") {
+			ble.connect(device.id, connectSuccess, connectFailure);
+		}
+	}, function() {
+		console.log("Scan failed.");
+	});
+}
+
+// Start notification for button characteristic of button service.
+function connectSuccess(peripheral) {
+	console.log(JSON.stringify(peripheral));
+	ble.startNotification(peripheral.id, BUTTON_SERVICE_UUID, BUTTON_CHARACTERISTIC_UUID, notification, notificationFailure);
+}
+
+// Connection failed.
+function connectFailure(peripheral) {
+	alert("Failed to connect.");
+}
+
+// Got notification. This means a button was pressed or released.
+function notification(buffer) {
+	var byteArray = new Uint8Array(buffer);
+	if (byteArray[0] == 1) {
+		// Vibrate (2 minutes)
+		navigator.vibrate(1000 * 60 * 2);
+		
+		// Or vibrate with custom pattern.
+		// navigator.vibrate([500,110,500,110,450,110,200,110,170,40,450,110,200,110,170,40,500]);
+	} else if (byteArray[0] == 2) {
+		// Stop vibration.
+		navigator.vibrate(0);
+	}
+	console.log("Button pressed: " + byteArray[0]);
+	
+}
+
+// Notification failed.
+function notificationFailure() {
+	alert("Notification request failed");
+}
+
