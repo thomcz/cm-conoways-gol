@@ -7,25 +7,12 @@
         "files": {}
     },
     "installed_plugins": {
+        "cordova-plugin-bluetooth-serial": {
+            "PACKAGE_NAME": "edu.teco.connectionmachineexample"
+        },
         "cordova-plugin-whitelist": {
-            "PACKAGE_NAME": "edu.teco.backgroundscan"
-        },
-        "de.appplant.cordova.plugin.background-mode": {
-            "PACKAGE_NAME": "edu.teco.backgroundscan"
-        },
-        "cordova-plugin-ble-central": {
-            "PACKAGE_NAME": "edu.teco.backgroundscan"
-        },
-        "cordova-plugin-vibration": {
-            "PACKAGE_NAME": "edu.teco.backgroundscan"
-        },
-        "cordova-plugin-dialogs": {
-            "PACKAGE_NAME": "edu.teco.backgroundscan"
+            "PACKAGE_NAME": "edu.teco.connectionmachineexample"
         }
     },
-    "dependent_plugins": {
-        "cordova-plugin-device": {
-            "PACKAGE_NAME": "edu.teco.backgroundscan"
-        }
-    }
+    "dependent_plugins": {}
 }

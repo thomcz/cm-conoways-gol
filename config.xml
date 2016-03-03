@@ -1,11 +1,11 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget id="edu.teco.bleconnectexample" version="1.0.0" xmlns="http://www.w3.org/ns/widgets" xmlns:gap="http://phonegap.com/ns/1.0">
-    <name>bleConnectExample</name>
-    <description>Example for establishing a BLE connection.</description>
-    <author email="support@phonegap.com" href="http://phonegap.com">PhoneGap Team</author>
+<widget id="edu.teco.connectionmachineexample" version="1.0.0" xmlns="http://www.w3.org/ns/widgets" xmlns:gap="http://phonegap.com/ns/1.0">
+    <name>ConnectionMachineExample</name>
+    <description>Example for communicating with the connection machine.</description>
+    <author email="support@phonegap.com" href="http://phonegap.com">Vincent Diener</author>
     <content src="index.html" />
     <preference name="permissions" value="none" />
-    <preference name="orientation" value="default" />
+    <preference name="orientation" value="portrait" />
     <preference name="target-device" value="universal" />
     <preference name="fullscreen" value="true" />
     <preference name="webviewbounce" value="true" />
@@ -37,11 +37,6 @@
     <gap:plugin name="org.apache.cordova.network-information" />
     <gap:plugin name="org.apache.cordova.splashscreen" />
     <gap:plugin name="org.apache.cordova.vibration" />
-	
-	<feature name="Notification">
-		<param name="android-package" value="org.apache.cordova.Notification" />
-	</feature>
-
     <icon src="icon.png" />
     <icon gap:platform="android" gap:qualifier="ldpi" src="www/res/icon/android/icon-36-ldpi.png" />
     <icon gap:platform="android" gap:qualifier="mdpi" src="www/res/icon/android/icon-48-mdpi.png" />
@@ -83,5 +78,4 @@
         <allow-intent href="itms-apps:*" />
     </platform>
     <engine name="android" spec="~4.1.1" />
-    <engine name="ios" spec="~3.9.2" />
 </widget>
