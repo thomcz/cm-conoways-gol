@@ -104,6 +104,7 @@ function listFailure() {
 
 // Called when connection to device is established.
 function connectSuccess() {
+	alert("conn succ");
 	console.log('Connected to ' + macAddress);
 	
 	// Write handshake.
@@ -112,12 +113,14 @@ function connectSuccess() {
 
 // Called when connection to device has failed.
 function connectFailure() {
+	alert("conn fail");
 	console.log('Received Events: ' + 'connectFailure');
 }
 
 // This function will try to initiate the handshake as described in
 // http://www.teco.edu/wp-content/uploads/2014/10/teco_led_matrix_protocol.pdf
 function handshake() {
+	alert("handshake");
 	var version = 1;
 	var xSize = 24;
 	var ySize = 24;
@@ -148,22 +151,26 @@ function handshake() {
 
 // Called when bluetooth send (handshake) fails.
 function sendHandshakeFailure() {
+	alert("hand fail");
 	console.log("Handshake write failed");
 }
 
 // Called when bluetooth send (handshake) was successful.
 function sendHandshakeSuccess() {
+	alert("hand succ");
 	// Wait 1-2 seconds for handshake response, then read it.
 	setTimeout(function() { bluetoothSerial.read(handshakeReadSuccess, handshakeReadFailure)}, 2000);
 }
 
 // Called when reading of handshake response fails.
 function handshakeReadFailure() {
+	alert("hand read fail");
 	console.log("Handshake read failed");
 }
 
 // Called when reading of handshake response was successful.
 function handshakeReadSuccess(resp) {
+	alert("hand read succ");
 	// Read handshake response (2 bytes).
 	var responseCode = resp.charCodeAt(0);
 	var maxFPS = resp.charCodeAt(1);
@@ -212,11 +219,13 @@ function writeData() {
 
 // Called when sending of frame to CM was successful.
 function sendSuccess() {
+	alert("write succ");
 	console.log('Received Events: ' + 'sendSuccess');
 }
 
 // Called when sending of frame to CM fails.
 function sendFailure() {
+	alert("write fail");
 	console.log('Received Events: ' + 'sendFailure');
 }
 
