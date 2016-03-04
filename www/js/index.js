@@ -19,7 +19,7 @@ function initialize() {
 
 // Event received. We may now use PhoneGap APIs.
 function onDeviceReady() {
-	alert("ready");
+	/*alert("ready");
 	alert(bluetoothSerial);
 	bluetoothSerial.list(function(devices) {
     devices.forEach(function(device) {
@@ -28,8 +28,8 @@ function onDeviceReady() {
 	}, function() {
 		alert("fail");
 	});
-	alert("end");
-	/*var parentElement = document.getElementById('someContent');
+	alert("end");*/
+	var parentElement = document.getElementById('someContent');
 	var listeningElement = parentElement.querySelector('.listening');
 	var receivedElement = parentElement.querySelector('.received');
 	listeningElement.setAttribute('style', 'display:none;');
@@ -41,7 +41,7 @@ function onDeviceReady() {
 	// Check bonded devices. (Note: This does not start a BT scan, it only lists the bonded devices.)
 	bluetoothSerial.list(listSuccess, listFailure);
 	alert("afterserial");
-	console.log('Received Events: ' + 'deviceready');*/
+	console.log('Received Events: ' + 'deviceready');
 }
 
 // Get current device orientation and map it to X and Y LED range of CM (0-24).
@@ -83,6 +83,7 @@ function listSuccess(pairedDevices) {
 		var item = pairedDevices[i];
 		if(item.name === "ledpi-teco"){
 			macAddress = item.id;
+			alert('The rigth one! ' + item.name);
 		} 
 		alert('Bonded device: ' + item.name);
 		console.log('Bonded device: ' + item.name);
