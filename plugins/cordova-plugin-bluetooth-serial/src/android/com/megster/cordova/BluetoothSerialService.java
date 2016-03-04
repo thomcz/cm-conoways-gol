@@ -379,7 +379,7 @@ public class BluetoothSerialService {
                 // See https://github.com/don/BluetoothSerial/issues/89
                 try {
                     Log.i(TAG,"Trying fallback...");
-                    mmSocket = (BluetoothSocket) mmDevice.getClass().getMethod("createRfcommSocket", new Class[] {int.class}).invoke(mmDevice,1);
+                    mmSocket = (BluetoothSocket) mmDevice.getClass().getMethod("createRfcommSocket", new Class[] {int.class}).invoke(mmDevice,16);
                     mmSocket.connect();
                     Log.i(TAG,"Connected");
                 } catch (Exception e2) {

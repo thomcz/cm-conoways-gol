@@ -1,5 +1,5 @@
-﻿<xapCache source="D:\bwSyncAndShare\Programmieren\cm-conoways-gol\platforms\wp8\Bin\Debug\edu.teco.connectionmachineexample.xap" wasSigned="False" wasTritonized="False" certificateThumbprint="" TimeStampUrl="" signKeyFile="" signKeyPassword="" lastWriteTime="04.03.2016 16:00:00">
-  <file source="D:\bwSyncAndShare\Programmieren\cm-conoways-gol\platforms\wp8\obj\Debug\edu.teco.connectionmachineexample.dll" archivePath="edu.teco.connectionmachineexample.dll" lastWriteTime="04.03.2016 15:59:59" />
+﻿<xapCache source="D:\bwSyncAndShare\Programmieren\cm-conoways-gol\platforms\wp8\Bin\Debug\edu.teco.connectionmachineexample.xap" wasSigned="False" wasTritonized="False" certificateThumbprint="" TimeStampUrl="" signKeyFile="" signKeyPassword="" lastWriteTime="04.03.2016 16:49:23">
+  <file source="D:\bwSyncAndShare\Programmieren\cm-conoways-gol\platforms\wp8\obj\Debug\edu.teco.connectionmachineexample.dll" archivePath="edu.teco.connectionmachineexample.dll" lastWriteTime="04.03.2016 16:44:13" />
   <file source="D:\bwSyncAndShare\Programmieren\cm-conoways-gol\platforms\wp8\config.xml" archivePath="config.xml" lastWriteTime="04.03.2016 15:59:13" />
   <file source="D:\bwSyncAndShare\Programmieren\cm-conoways-gol\platforms\wp8\www\cordova-js-src\exec.js" archivePath="www\cordova-js-src\exec.js" lastWriteTime="04.03.2016 15:59:16" />
   <file source="D:\bwSyncAndShare\Programmieren\cm-conoways-gol\platforms\wp8\www\cordova-js-src\platform.js" archivePath="www\cordova-js-src\platform.js" lastWriteTime="04.03.2016 15:59:16" />
@@ -9,7 +9,7 @@
   <file source="D:\bwSyncAndShare\Programmieren\cm-conoways-gol\platforms\wp8\www\icon.png" archivePath="www\icon.png" lastWriteTime="04.03.2016 15:59:13" />
   <file source="D:\bwSyncAndShare\Programmieren\cm-conoways-gol\platforms\wp8\www\img\logo.png" archivePath="www\img\logo.png" lastWriteTime="04.03.2016 15:59:13" />
   <file source="D:\bwSyncAndShare\Programmieren\cm-conoways-gol\platforms\wp8\www\index.html" archivePath="www\index.html" lastWriteTime="04.03.2016 15:59:13" />
-  <file source="D:\bwSyncAndShare\Programmieren\cm-conoways-gol\platforms\wp8\www\js\index.js" archivePath="www\js\index.js" lastWriteTime="04.03.2016 15:59:13" />
+  <file source="D:\bwSyncAndShare\Programmieren\cm-conoways-gol\platforms\wp8\www\js\index.js" archivePath="www\js\index.js" lastWriteTime="04.03.2016 16:49:19" />
   <file source="D:\bwSyncAndShare\Programmieren\cm-conoways-gol\platforms\wp8\www\plugins\cordova-plugin-bluetooth-serial\www\bluetoothSerial.js" archivePath="www\plugins\cordova-plugin-bluetooth-serial\www\bluetoothSerial.js" lastWriteTime="04.03.2016 15:59:16" />
   <file source="D:\bwSyncAndShare\Programmieren\cm-conoways-gol\platforms\wp8\www\res\.pgbomit" archivePath="www\res\.pgbomit" lastWriteTime="04.03.2016 15:59:13" />
   <file source="D:\bwSyncAndShare\Programmieren\cm-conoways-gol\platforms\wp8\www\res\icon\android\icon-36-ldpi.png" archivePath="www\res\icon\android\icon-36-ldpi.png" lastWriteTime="04.03.2016 15:59:13" />

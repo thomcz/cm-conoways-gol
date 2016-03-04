@@ -82,7 +82,7 @@ function listSuccess(pairedDevices) {
 	for(var i = 0; i < pairedDevices.length ; i++){
 		var item = pairedDevices[i];
 		alert('device name: ' + item.name + " mac: " + item.id);
-		if(item.name === "ledpi-teco"){
+		if(item.name === "THOMCZ"){
 			macAddress = item.id;
 			alert('The rigth one! ' + item.name);
 		} 		
@@ -193,7 +193,7 @@ function writeData() {
 		 xy[i] = [];
 	}
 	
-	for (var i = 0; i < 24; i++) {
+	/*for (var i = 0; i < 24; i++) {
 		for (var j = 0; j < 24; j++) {
 			if ((i == yLed || i+1 == yLed || i-1 == yLed) && 
 				(j == xLed || j+1 == xLed || j-1 == xLed)) {
@@ -202,7 +202,9 @@ function writeData() {
 				xy[i][j] = 0;
 			}
 		}	
-	}
+	}*/
+	xy[3][3] = 255;
+	xy[2][2] = 155;
 
 	// Make matrix into something the Connection Machine understands and send data.
 	var buffer = new ArrayBuffer(576);
@@ -219,7 +221,7 @@ function writeData() {
 
 // Called when sending of frame to CM was successful.
 function sendSuccess() {
-	alert("write succ");
+	//alert("write succ");
 	console.log('Received Events: ' + 'sendSuccess');
 }
 

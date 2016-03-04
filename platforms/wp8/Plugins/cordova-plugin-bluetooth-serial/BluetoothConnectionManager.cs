@@ -92,7 +92,7 @@ namespace BluetoothConnectionManager
             {
                 try
                 {
-                    await socket.ConnectAsync(deviceHostName, "1");
+                    await socket.ConnectAsync(deviceHostName, "16");
                     dataReader = new DataReader(socket.InputStream);
                     dataReadWorker.RunWorkerAsync();
                     dataWriter = new DataWriter(socket.OutputStream);
