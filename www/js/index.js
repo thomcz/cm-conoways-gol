@@ -19,18 +19,25 @@ function initialize() {
 
 // Event received. We may now use PhoneGap APIs.
 function onDeviceReady() {
-	var parentElement = document.getElementById('someContent');
+	alert("ready");
+	bluetoothSerial.list(function(devices) {
+    devices.forEach(function(device) {
+        alert(device.id);
+    })
+	}, failure);
+	/*var parentElement = document.getElementById('someContent');
 	var listeningElement = parentElement.querySelector('.listening');
 	var receivedElement = parentElement.querySelector('.received');
 	listeningElement.setAttribute('style', 'display:none;');
 	receivedElement.setAttribute('style', 'display:block;');
-	alert("beforeserial");
+	
 	// Register for accelerometer events.
 	registerAccelerometer();
+	alert("beforeserial");
 	// Check bonded devices. (Note: This does not start a BT scan, it only lists the bonded devices.)
 	bluetoothSerial.list(listSuccess, listFailure);
 	alert("afterserial");
-	console.log('Received Events: ' + 'deviceready');
+	console.log('Received Events: ' + 'deviceready');*/
 }
 
 // Get current device orientation and map it to X and Y LED range of CM (0-24).
