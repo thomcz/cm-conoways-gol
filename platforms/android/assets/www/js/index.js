@@ -88,12 +88,12 @@ function listSuccess(pairedDevices) {
 		} 		
 		console.log('Bonded device: ' + item.name);
 	}
-	alert(macAddress);
+	alert("mac: " + macAddress);
 	console.log('Found device with name ledpi-teco: MAC address is ' + macAddress);
 	
 	// Connect to device.
 	console.log('Connecting to ' + macAddress);
-	bluetoothSerial.connectInsecure(macAddress, connectSuccess, connectFailure);
+	bluetoothSerial.connect(macAddress, connectSuccess, connectFailure);
 }
 
 // Called when listing of bonded devices fails.

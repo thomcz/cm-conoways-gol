@@ -21,7 +21,7 @@
         <SupportedCultures>en-US</SupportedCultures>
         <XapOutputs>true</XapOutputs>
         <GenerateSilverlightManifest>true</GenerateSilverlightManifest>
-        <XapFilename>CordovaAppProj_$(Configuration)_$(Platform).xap</XapFilename>
+        <XapFilename>edu.teco.connectionmachineexample.xap</XapFilename>
         <SilverlightManifestTemplate>Properties\AppManifest.xml</SilverlightManifestTemplate>
         <SilverlightAppEntry>edu.teco.connectionmachineexample.App</SilverlightAppEntry>
         <ValidateXaml>true</ValidateXaml>

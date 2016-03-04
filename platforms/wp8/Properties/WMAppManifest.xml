@@ -4,7 +4,7 @@
     <Languages xmlns="">
         <Language code="en-US" />
     </Languages>
-    <App Author="Vincent Diener" BitsPerPixel="32" Description="Example for communicating with the connection machine." Genre="apps.normal" ProductID="{93dd8f80-e1fb-11e5-aaea-f7b8a545aa6f}" Publisher="Vincent Diener" PublisherID="{db093ed5-53b1-45f7-af72-751e8f36ab80}" RuntimeType="Silverlight" Title="ConnectionMachineExample" Version="1.0.0" xmlns="">
+    <App Author="Vincent Diener" BitsPerPixel="32" Description="Example for communicating with the connection machine." Genre="apps.normal" ProductID="{a7cce130-e219-11e5-a613-01664976b383}" Publisher="Vincent Diener" PublisherID="{db093ed5-53b1-45f7-af72-751e8f36ab80}" RuntimeType="Silverlight" Title="ConnectionMachineExample" Version="1.0.0" xmlns="">
         <IconPath IsRelative="true" IsResource="false">ApplicationIcon.png</IconPath>
         <Capabilities>
             <Capability Name="ID_CAP_WEBBROWSERCOMPONENT" />
@@ -15,12 +15,12 @@
             <DefaultTask Name="_default" NavigationPage="MainPage.xaml" />
         </Tasks>
         <Tokens>
-            <PrimaryToken TaskName="_default" TokenID="ConnectionMachineExampleToken">
+            <PrimaryToken TaskName="_default" TokenID="ConnectionMachineExample">
                 <TemplateFlip>
                     <SmallImageURI IsRelative="true" IsResource="false">Background.png</SmallImageURI>
                     <Count>0</Count>
                     <BackgroundImageURI IsRelative="true" IsResource="false">Background.png</BackgroundImageURI>
-                    <Title>ConnectionMachineExample</Title>
+                    <Title>HelloCordova</Title>
                     <BackContent />
                     <BackBackgroundImageURI />
                     <BackTitle />

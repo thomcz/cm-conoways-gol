@@ -19,13 +19,17 @@ function initialize() {
 
 // Event received. We may now use PhoneGap APIs.
 function onDeviceReady() {
-	alert("ready");
+	/*alert("ready");
+	alert(bluetoothSerial);
 	bluetoothSerial.list(function(devices) {
     devices.forEach(function(device) {
         alert(device.id);
     })
-	}, failure);
-	/*var parentElement = document.getElementById('someContent');
+	}, function() {
+		alert("fail");
+	});
+	alert("end");*/
+	var parentElement = document.getElementById('someContent');
 	var listeningElement = parentElement.querySelector('.listening');
 	var receivedElement = parentElement.querySelector('.received');
 	listeningElement.setAttribute('style', 'display:none;');
@@ -37,7 +41,7 @@ function onDeviceReady() {
 	// Check bonded devices. (Note: This does not start a BT scan, it only lists the bonded devices.)
 	bluetoothSerial.list(listSuccess, listFailure);
 	alert("afterserial");
-	console.log('Received Events: ' + 'deviceready');*/
+	console.log('Received Events: ' + 'deviceready');
 }
 
 // Get current device orientation and map it to X and Y LED range of CM (0-24).
@@ -77,13 +81,14 @@ function listSuccess(pairedDevices) {
 	// This has no error handling! When the devices are not paired, it won't work!
 	for(var i = 0; i < pairedDevices.length ; i++){
 		var item = pairedDevices[i];
+		alert('device name: ' + item.name + " mac: " + item.id);
 		if(item.name === "ledpi-teco"){
 			macAddress = item.id;
-		} 
-		alert('Bonded device: ' + item.name);
+			alert('The rigth one! ' + item.name);
+		} 		
 		console.log('Bonded device: ' + item.name);
 	}
-	alert(macAddress);
+	alert("mac: " + macAddress);
 	console.log('Found device with name ledpi-teco: MAC address is ' + macAddress);
 	
 	// Connect to device.
@@ -99,6 +104,7 @@ function listFailure() {
 
 // Called when connection to device is established.
 function connectSuccess() {
+	alert("conn succ");
 	console.log('Connected to ' + macAddress);
 	
 	// Write handshake.
@@ -107,12 +113,14 @@ function connectSuccess() {
 
 // Called when connection to device has failed.
 function connectFailure() {
+	alert("conn fail");
 	console.log('Received Events: ' + 'connectFailure');
 }
 
 // This function will try to initiate the handshake as described in
 // http://www.teco.edu/wp-content/uploads/2014/10/teco_led_matrix_protocol.pdf
 function handshake() {
+	alert("handshake");
 	var version = 1;
 	var xSize = 24;
 	var ySize = 24;
@@ -143,22 +151,26 @@ function handshake() {
 
 // Called when bluetooth send (handshake) fails.
 function sendHandshakeFailure() {
+	alert("hand fail");
 	console.log("Handshake write failed");
 }
 
 // Called when bluetooth send (handshake) was successful.
 function sendHandshakeSuccess() {
+	alert("hand succ");
 	// Wait 1-2 seconds for handshake response, then read it.
 	setTimeout(function() { bluetoothSerial.read(handshakeReadSuccess, handshakeReadFailure)}, 2000);
 }
 
 // Called when reading of handshake response fails.
 function handshakeReadFailure() {
+	alert("hand read fail");
 	console.log("Handshake read failed");
 }
 
 // Called when reading of handshake response was successful.
 function handshakeReadSuccess(resp) {
+	alert("hand read succ");
 	// Read handshake response (2 bytes).
 	var responseCode = resp.charCodeAt(0);
 	var maxFPS = resp.charCodeAt(1);
@@ -207,11 +219,13 @@ function writeData() {
 
 // Called when sending of frame to CM was successful.
 function sendSuccess() {
+	alert("write succ");
 	console.log('Received Events: ' + 'sendSuccess');
 }
 
 // Called when sending of frame to CM fails.
 function sendFailure() {
+	alert("write fail");
 	console.log('Received Events: ' + 'sendFailure');
 }
 

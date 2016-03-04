@@ -1,0 +1,14 @@
+D:\bwSyncAndShare\Programmieren\cm-conoways-gol\platforms\wp8\Bin\Debug\ApplicationIcon.png
+D:\bwSyncAndShare\Programmieren\cm-conoways-gol\platforms\wp8\Bin\Debug\Background.png
+D:\bwSyncAndShare\Programmieren\cm-conoways-gol\platforms\wp8\Bin\Debug\edu.teco.connectionmachineexample.dll
+D:\bwSyncAndShare\Programmieren\cm-conoways-gol\platforms\wp8\Bin\Debug\edu.teco.connectionmachineexample.pdb
+D:\bwSyncAndShare\Programmieren\cm-conoways-gol\platforms\wp8\Bin\Debug\AppManifest.xaml
+D:\bwSyncAndShare\Programmieren\cm-conoways-gol\platforms\wp8\Bin\Debug\Properties\WMAppManifest.xml
+D:\bwSyncAndShare\Programmieren\cm-conoways-gol\platforms\wp8\Bin\Debug\edu.teco.connectionmachineexample.xap
+D:\bwSyncAndShare\Programmieren\cm-conoways-gol\platforms\wp8\obj\Debug\App.g.cs
+D:\bwSyncAndShare\Programmieren\cm-conoways-gol\platforms\wp8\obj\Debug\cordovalib\CordovaView.g.cs
+D:\bwSyncAndShare\Programmieren\cm-conoways-gol\platforms\wp8\obj\Debug\MainPage.g.cs
+D:\bwSyncAndShare\Programmieren\cm-conoways-gol\platforms\wp8\obj\Debug\edu.teco.connectionmachineexample.g.resources
+D:\bwSyncAndShare\Programmieren\cm-conoways-gol\platforms\wp8\obj\Debug\edu.teco.connectionmachineexample.dll
+D:\bwSyncAndShare\Programmieren\cm-conoways-gol\platforms\wp8\obj\Debug\edu.teco.connectionmachineexample.pdb
+D:\bwSyncAndShare\Programmieren\cm-conoways-gol\platforms\wp8\obj\Debug\XapCacheFile.xml
