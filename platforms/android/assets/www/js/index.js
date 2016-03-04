@@ -93,7 +93,7 @@ function listSuccess(pairedDevices) {
 	
 	// Connect to device.
 	console.log('Connecting to ' + macAddress);
-	bluetoothSerial.connect(macAddress, connectSuccess, connectFailure);
+	bluetoothSerial.connectInsecure(macAddress, connectSuccess, connectFailure);
 }
 
 // Called when listing of bonded devices fails.
