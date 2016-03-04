@@ -81,11 +81,11 @@ function listSuccess(pairedDevices) {
 	// This has no error handling! When the devices are not paired, it won't work!
 	for(var i = 0; i < pairedDevices.length ; i++){
 		var item = pairedDevices[i];
+		alert('device name: ' + item.name + " mac: " + item.id);
 		if(item.name === "ledpi-teco"){
 			macAddress = item.id;
 			alert('The rigth one! ' + item.name);
-		} 
-		alert('Bonded device: ' + item.name);
+		} 		
 		console.log('Bonded device: ' + item.name);
 	}
 	alert(macAddress);
@@ -93,7 +93,7 @@ function listSuccess(pairedDevices) {
 	
 	// Connect to device.
 	console.log('Connecting to ' + macAddress);
-	bluetoothSerial.connect("00:1A:7D:DA:71:02", connectSuccess, connectFailure);
+	bluetoothSerial.connect(macAddress, connectSuccess, connectFailure);
 }
 
 // Called when listing of bonded devices fails.
