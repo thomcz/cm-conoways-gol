@@ -1,0 +1,53 @@
+{
+    "prepare_queue": {
+        "installed": [],
+        "uninstalled": []
+    },
+    "config_munge": {
+        "files": {
+            "config.xml": {
+                "parents": {
+                    "/*": [
+                        {
+                            "xml": "<feature name=\"BluetoothSerial\"><param name=\"wp-package\" value=\"BluetoothSerial\" /></feature>",
+                            "count": 1
+                        }
+                    ]
+                }
+            },
+            "Properties/WMAppManifest.xml": {
+                "parents": {
+                    "/Deployment/App/Capabilities": [
+                        {
+                            "xml": "<Capability Name=\"ID_CAP_PROXIMITY\" />",
+                            "count": 1
+                        }
+                    ]
+                }
+            }
+        }
+    },
+    "installed_plugins": {
+        "cordova-plugin-bluetooth-serial": {
+            "PACKAGE_NAME": "{93dd8f80-e1fb-11e5-aaea-f7b8a545aa6f}"
+        },
+        "cordova-plugin-whitelist": {
+            "PACKAGE_NAME": "{93dd8f80-e1fb-11e5-aaea-f7b8a545aa6f}"
+        }
+    },
+    "dependent_plugins": {},
+    "modules": [
+        {
+            "file": "plugins/cordova-plugin-bluetooth-serial/www/bluetoothSerial.js",
+            "id": "cordova-plugin-bluetooth-serial.bluetoothSerial",
+            "pluginId": "cordova-plugin-bluetooth-serial",
+            "clobbers": [
+                "window.bluetoothSerial"
+            ]
+        }
+    ],
+    "plugin_metadata": {
+        "cordova-plugin-bluetooth-serial": "0.4.5",
+        "cordova-plugin-whitelist": "1.0.0"
+    }
+}

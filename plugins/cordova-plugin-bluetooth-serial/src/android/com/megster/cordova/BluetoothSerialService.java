@@ -366,12 +366,20 @@ public class BluetoothSerialService {
             // Always cancel discovery because it will slow down a connection
             mAdapter.cancelDiscovery();
 
+            // Make a connection to the BluetoothSocket
+            try {
+                // This is a blocking call and will only return on a successful connection or an exception
+                Log.i(TAG,"Connecting to socket...");
+                mmSocket.connect();
+                Log.i(TAG,"Connected");
+            } catch (IOException e) {
+                Log.e(TAG, e.toString());
 
                 // Some 4.1 devices have problems, try an alternative way to connect
                 // See https://github.com/don/BluetoothSerial/issues/89
                 try {
                     Log.i(TAG,"Trying fallback...");
-                    mmSocket = (BluetoothSocket) mmDevice.getClass().getMethod("createRfcommSocket", new Class[] {int.class}).invoke(mmDevice,16);
+                    mmSocket = (BluetoothSocket) mmDevice.getClass().getMethod("createRfcommSocket", new Class[] {int.class}).invoke(mmDevice,1);
                     mmSocket.connect();
                     Log.i(TAG,"Connected");
                 } catch (Exception e2) {
@@ -384,7 +392,7 @@ public class BluetoothSerialService {
                     connectionFailed();
                     return;
                 }
-            
+            }
 
             // Reset the ConnectThread because we're done
             synchronized (BluetoothSerialService.this) {

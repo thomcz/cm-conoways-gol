@@ -1,0 +1,18 @@
+{
+    "prepare_queue": {
+        "installed": [],
+        "uninstalled": []
+    },
+    "config_munge": {
+        "files": {}
+    },
+    "installed_plugins": {
+        "cordova-plugin-bluetooth-serial": {
+            "PACKAGE_NAME": "{93dd8f80-e1fb-11e5-aaea-f7b8a545aa6f}"
+        },
+        "cordova-plugin-whitelist": {
+            "PACKAGE_NAME": "{93dd8f80-e1fb-11e5-aaea-f7b8a545aa6f}"
+        }
+    },
+    "dependent_plugins": {}
+}
