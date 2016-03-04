@@ -24,7 +24,10 @@ function onDeviceReady() {
     devices.forEach(function(device) {
         alert(device.id);
     })
-	}, failure);
+	}, function() {
+		alert("fail");
+	});
+	alert("end");
 	/*var parentElement = document.getElementById('someContent');
 	var listeningElement = parentElement.querySelector('.listening');
 	var receivedElement = parentElement.querySelector('.received');
