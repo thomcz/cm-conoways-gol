@@ -82,7 +82,7 @@ function listSuccess(pairedDevices) {
 	for(var i = 0; i < pairedDevices.length ; i++){
 		var item = pairedDevices[i];
 		alert('device name: ' + item.name + " mac: " + item.id);
-		if(item.name === "ledpi-teco"){
+		if(item.name === "THOMCZ"){
 			macAddress = item.id;
 			alert('The rigth one! ' + item.name);
 		} 		
