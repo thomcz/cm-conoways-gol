@@ -20,6 +20,7 @@ function initialize() {
 // Event received. We may now use PhoneGap APIs.
 function onDeviceReady() {
 	alert("ready");
+	alert(bluetoothSerial);
 	bluetoothSerial.list(function(devices) {
     devices.forEach(function(device) {
         alert(device.id);
