@@ -1,8 +1,8 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget id="edu.teco.connectionmachineexample" version="1.0.0" xmlns="http://www.w3.org/ns/widgets" xmlns:gap="http://phonegap.com/ns/1.0">
-    <name>ConnectionMachineExample</name>
-    <description>Example for communicating with the connection machine.</description>
-    <author email="support@phonegap.com" href="http://phonegap.com">Vincent Diener</author>
+<widget id="mobilecomputing.connectionmachine.gol" version="1.0.0" xmlns="http://www.w3.org/ns/widgets" xmlns:gap="http://phonegap.com/ns/1.0">
+    <name>CM-Conoways-GoL</name>
+    <description>Conoways Game of Life for the connection machine.</description>
+	<author href="http://phonegap.com" email="support@phonegap.com">PhoneGap Team</author>
     <content src="index.html" />
     <preference name="permissions" value="none" />
     <preference name="orientation" value="portrait" />
@@ -74,6 +74,5 @@
     <platform name="android">
         <allow-intent href="market:*" />
     </platform>
-    <!--<platform name="wp8"/>
-    <engine name="android" spec="~4.1.1" />-->
+    <platform name="wp8"/>
 </widget>

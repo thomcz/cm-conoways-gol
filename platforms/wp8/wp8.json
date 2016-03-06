@@ -29,10 +29,10 @@
     },
     "installed_plugins": {
         "cordova-plugin-bluetooth-serial": {
-            "PACKAGE_NAME": "{93dd8f80-e1fb-11e5-aaea-f7b8a545aa6f}"
+            "PACKAGE_NAME": "{de9659d0-e3d6-11e5-83c7-810887406a32}"
         },
         "cordova-plugin-whitelist": {
-            "PACKAGE_NAME": "{93dd8f80-e1fb-11e5-aaea-f7b8a545aa6f}"
+            "PACKAGE_NAME": "{de9659d0-e3d6-11e5-83c7-810887406a32}"
         }
     },
     "dependent_plugins": {},

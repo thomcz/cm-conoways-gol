@@ -1,17 +1,12 @@
 // This script will connect to the Connection Machine or the Connection Machine Emulator.
-// It will show a 3x3 dot on the LEDs depending on the accelerometer values of the phone.
-// Connection and communication is done according to the protocol specification
-// linked on http://www.teco.edu/cm/dev/:
+// It's an implementation of conoways game of life.
 // http://www.teco.edu/wp-content/uploads/2014/10/teco_led_matrix_protocol.pdf
 
 
-// The MAC address of the device. Gets filled in from the list of bonded devices.
-var macAddress;
-
-// Coordinate of currently activated LED.
-var xLed;
-var yLed;
-
+// TODO: evtl fürs disconnect??
+//var macAddress;
+var buffer;
+var matrix;
 // Start listening for the deviceready-Event.
 function initialize() {
 	document.addEventListener('deviceready', onDeviceReady, false);
@@ -19,93 +14,40 @@ function initialize() {
 
 // Event received. We may now use PhoneGap APIs.
 function onDeviceReady() {
-	/*alert("ready");
-	alert(bluetoothSerial);
-	bluetoothSerial.list(function(devices) {
-    devices.forEach(function(device) {
-        alert(device.id);
-    })
-	}, function() {
-		alert("fail");
-	});
-	alert("end");*/
-	var parentElement = document.getElementById('someContent');
-	var listeningElement = parentElement.querySelector('.listening');
-	var receivedElement = parentElement.querySelector('.received');
-	listeningElement.setAttribute('style', 'display:none;');
-	receivedElement.setAttribute('style', 'display:block;');
-	
-	// Register for accelerometer events.
-	registerAccelerometer();
-	alert("beforeserial");
-	// Check bonded devices. (Note: This does not start a BT scan, it only lists the bonded devices.)
+    initMartix();
 	bluetoothSerial.list(listSuccess, listFailure);
-	alert("afterserial");
-	console.log('Received Events: ' + 'deviceready');
-}
-
-// Get current device orientation and map it to X and Y LED range of CM (0-24).
-function registerAccelerometer() {
-	window.ondevicemotion = function(event) { 
-		ax = event.accelerationIncludingGravity.x;
-		ay = event.accelerationIncludingGravity.y;
-		az = event.accelerationIncludingGravity.z;
-		
-		// Linear map values (-8/+8 to 0/23).
-		var horizontal = 0 + ((23 - 0) / (8 - (-8))) * (ay - (-8));
-		var vertical = 0 + ((23 - 0) / (8 - (-8))) * (ax - (-8));
-		
-		if (horizontal <= 0) {
-			xLed = 0;
-		} else if (horizontal >= 23) {
-			xLed = 23;
-		} else {
-			xLed = Math.round(horizontal);
-		}
-		
-		// Make sure we have an integer between 0 and 23.
-		if (vertical <= 0) {
-			yLed = 0;
-		} else if (vertical >= 23) {
-			yLed = 23;
-		} else {
-			yLed = Math.round(vertical);
-		}
-	}
 }
 
 // Gets called when list of bonded devices was received.
-function listSuccess(pairedDevices) {	
-	alert("list success");
-	// Loop through devices and loop for device with name "ledpi-teco".
-	// This has no error handling! When the devices are not paired, it won't work!
-	for(var i = 0; i < pairedDevices.length ; i++){
-		var item = pairedDevices[i];
-		alert('device name: ' + item.name + " mac: " + item.id);
-		if(item.name === "THOMCZ"){
-			macAddress = item.id;
-			alert('The rigth one! ' + item.name);
-		} 		
-		console.log('Bonded device: ' + item.name);
-	}
-	alert("mac: " + macAddress);
-	console.log('Found device with name ledpi-teco: MAC address is ' + macAddress);
-	
-	// Connect to device.
-	console.log('Connecting to ' + macAddress);
-	bluetoothSerial.connect(macAddress, connectSuccess, connectFailure);
+function listSuccess(pairedDevices) {
+    var cmSelect = document.getElementById("cm_select");
+    for (var i = 0; i < pairedDevices.length; i++) {
+        var option = document.createElement("option");
+        option.text = pairedDevices[i].name;
+        option.value = pairedDevices[i].id;
+        cmSelect.add(option);
+    }
+}
+function connectToCM(btn) {
+    document.getElementById("connect_cm").disabled = true;
+    var cmSelect = document.getElementById("cm_select");
+    var options = cmSelect.options;
+    var selectedIndex = cmSelect.selectedIndex;
+    if (selectedIndex >= 0) {
+        var macAddress = options[selectedIndex].value;
+        bluetoothSerial.connect(macAddress, connectSuccess, connectFailure);
+    }    
 }
 
 // Called when listing of bonded devices fails.
 function listFailure() {	
-	alert("List failure");
-	console.log('Listing bonded devices failed.');
+	alert("Couldn't list paired devices. Check if your bluetooth is on");
+	///console.log('Listing bonded devices failed.');
 }
 
 // Called when connection to device is established.
 function connectSuccess() {
 	alert("conn succ");
-	console.log('Connected to ' + macAddress);
 	
 	// Write handshake.
 	handshake();
@@ -113,8 +55,8 @@ function connectSuccess() {
 
 // Called when connection to device has failed.
 function connectFailure() {
-	alert("conn fail");
-	console.log('Received Events: ' + 'connectFailure');
+    alert("could not connect to selected connection machine. Check the steps above!");
+    document.getElementById("connect_cm").disabled = false;
 }
 
 // This function will try to initiate the handshake as described in
@@ -151,73 +93,44 @@ function handshake() {
 
 // Called when bluetooth send (handshake) fails.
 function sendHandshakeFailure() {
-	alert("hand fail");
-	console.log("Handshake write failed");
+    alert("Handshake write failed. Try Again!");
+    document.getElementById("connect_cm").disabled = false;
 }
 
 // Called when bluetooth send (handshake) was successful.
 function sendHandshakeSuccess() {
-	alert("hand succ");
+	//alert("hand succ");
 	// Wait 1-2 seconds for handshake response, then read it.
 	setTimeout(function() { bluetoothSerial.read(handshakeReadSuccess, handshakeReadFailure)}, 2000);
 }
 
 // Called when reading of handshake response fails.
 function handshakeReadFailure() {
-	alert("hand read fail");
-	console.log("Handshake read failed");
+    alert("Handshake read failed. Try Again!");
 }
 
 // Called when reading of handshake response was successful.
 function handshakeReadSuccess(resp) {
 	alert("hand read succ");
-	// Read handshake response (2 bytes).
-	var responseCode = resp.charCodeAt(0);
-	var maxFPS = resp.charCodeAt(1);
-	
-	// Start sending frames to the connection machine with the allowed max FPS.
-	console.log("Handshake response: " + responseCode + " " + maxFPS);
-	if (responseCode == 0) {
-		var timer = setInterval(function() { writeData() }, 1000 / maxFPS);
-	}
+    //location.assign("menu.html");
+	document.getElementById("indexPage").style.display = "none";
+	document.getElementById("canvasPage").style.display = "block";
+	createGolField();
 }
 
-// Send one frame to CM.
-function writeData() {	
-
-	// Create 24x24 matrix. We can fill this matrix with values between 0 and 255 to
-	// represent the brightness of the LED.
-	var xy = [];
-	var rows = 24;
-	for (var i  = 0; i < rows; i++){
-		 xy[i] = [];
-	}
-	
-	/*for (var i = 0; i < 24; i++) {
-		for (var j = 0; j < 24; j++) {
-			if ((i == yLed || i+1 == yLed || i-1 == yLed) && 
-				(j == xLed || j+1 == xLed || j-1 == xLed)) {
-				xy[i][j] = 255;
-			} else {
-				xy[i][j] = 0;
-			}
-		}	
-	}*/
-	xy[3][3] = 255;
-	xy[2][2] = 155;
-
-	// Make matrix into something the Connection Machine understands and send data.
-	var buffer = new ArrayBuffer(576);
-	var matrix = new Uint8Array(buffer);
-	
-	for (var i = 0; i < 24; i++) {
-		for (var j = 0; j <24; j++) {
-			matrix[i * 24 + j] = xy[i][j];
-		}	
-	}
-	
-	bluetoothSerial.write(matrix.buffer, sendSuccess, sendFailure);
-} 
+function initMartix() {
+    buffer = new ArrayBuffer(576);
+    matrix = new Uint8Array(buffer);
+    for (var i = 0; i < 24; i++) {
+        for (var j = 0; j < 24; j++) {
+            matrix[i * 24 + j] = 0;
+        }
+    }
+}
+function sendData(x, y, value) {
+    matrix[x * 24 + y] = value;
+    bluetoothSerial.write(matrix.buffer, sendSuccess, sendFailure);
+}
 
 // Called when sending of frame to CM was successful.
 function sendSuccess() {
@@ -227,7 +140,7 @@ function sendSuccess() {
 
 // Called when sending of frame to CM fails.
 function sendFailure() {
-	alert("write fail");
+	//alert("write fail");
 	console.log('Received Events: ' + 'sendFailure');
 }
 

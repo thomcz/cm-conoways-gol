@@ -92,7 +92,8 @@ namespace BluetoothConnectionManager
             {
                 try
                 {
-                    await socket.ConnectAsync(deviceHostName, "1");
+					//second argument is 16 because the connection machine listen to port 16
+                    await socket.ConnectAsync(deviceHostName, "16");
                     dataReader = new DataReader(socket.InputStream);
                     dataReadWorker.RunWorkerAsync();
                     dataWriter = new DataWriter(socket.OutputStream);

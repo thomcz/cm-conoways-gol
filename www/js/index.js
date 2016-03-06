@@ -19,16 +19,6 @@ function initialize() {
 
 // Event received. We may now use PhoneGap APIs.
 function onDeviceReady() {
-	/*alert("ready");
-	alert(bluetoothSerial);
-	bluetoothSerial.list(function(devices) {
-    devices.forEach(function(device) {
-        alert(device.id);
-    })
-	}, function() {
-		alert("fail");
-	});
-	alert("end");*/
 	var parentElement = document.getElementById('someContent');
 	var listeningElement = parentElement.querySelector('.listening');
 	var receivedElement = parentElement.querySelector('.received');
@@ -219,13 +209,13 @@ function writeData() {
 
 // Called when sending of frame to CM was successful.
 function sendSuccess() {
-	alert("write succ");
+	//alert("write succ");
 	console.log('Received Events: ' + 'sendSuccess');
 }
 
 // Called when sending of frame to CM fails.
 function sendFailure() {
-	alert("write fail");
+	//alert("write fail");
 	console.log('Received Events: ' + 'sendFailure');
 }
 

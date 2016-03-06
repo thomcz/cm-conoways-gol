@@ -32,7 +32,7 @@ using System.Windows.Shapes;
 using Microsoft.Phone.Controls;
 using Microsoft.Phone.Shell;
 
-namespace edu.teco.connectionmachineexample
+namespace mobilecomputing.connectionmachine.gol
 {
     public partial class App : Application
     {

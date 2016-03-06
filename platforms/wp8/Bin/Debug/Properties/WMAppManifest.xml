@@ -4,7 +4,7 @@
   <Languages xmlns="">
     <Language code="en-US" />
   </Languages>
-  <App Author="Vincent Diener" BitsPerPixel="32" Description="Example for communicating with the connection machine." Genre="apps.normal" ProductID="{a7cce130-e219-11e5-a613-01664976b383}" Publisher="Vincent Diener" PublisherID="{db093ed5-53b1-45f7-af72-751e8f36ab80}" RuntimeType="Silverlight" Title="ConnectionMachineExample" Version="1.0.0" xmlns="">
+  <App Author="PhoneGap Team" BitsPerPixel="32" Description="Conoways Game of Life for the connection machine." Genre="apps.normal" ProductID="{e8fc3f20-e3d6-11e5-83e0-8b6c0e65ddf7}" Publisher="PhoneGap Team" PublisherID="{db093ed5-53b1-45f7-af72-751e8f36ab80}" RuntimeType="Silverlight" Title="CM-Conoways-GoL" Version="1.0.0" xmlns="">
     <IconPath IsRelative="true" IsResource="false">ApplicationIcon.png</IconPath>
     <Capabilities>
       <Capability Name="ID_CAP_WEBBROWSERCOMPONENT" />
@@ -15,7 +15,7 @@
       <DefaultTask Name="_default" NavigationPage="MainPage.xaml" />
     </Tasks>
     <Tokens>
-      <PrimaryToken TaskName="_default" TokenID="ConnectionMachineExample">
+      <PrimaryToken TaskName="_default" TokenID="CM-Conoways-GoL">
         <TemplateFlip>
           <SmallImageURI IsRelative="true" IsResource="false">Background.png</SmallImageURI>
           <Count>0</Count>

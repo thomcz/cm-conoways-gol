@@ -34,7 +34,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Resources;
 
 
-namespace edu.teco.connectionmachineexample
+namespace mobilecomputing.connectionmachine.gol
 {
     public partial class MainPage : PhoneApplicationPage
     {
