@@ -10,24 +10,35 @@
         <script type="text/javascript" src="cordova.js"></script>
         <script type="text/javascript" src="js/index.js"></script>
         <script type="text/javascript" src="js/canvas.js"></script>
-        <!--<script type="text/javascript">
-            initialize();
-        </script>-->
+        <script type="text/javascript" src="js/gol.js"></script>
+        
+        <link href='https://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'>
         <link rel="stylesheet" type="text/css" href="css/index.css" />
         <title>Hello World</title>
     </head>
     <body onload="initialize()">
-        <h1>Conoways Game of Life for Connection Machine</h1>
-        <div id="indexPage">
+        <header>
+            <h3>Conoways Game of Life</h3>
+        </header>
+        <div id="indexPage" class="content">
+            <p><b>Instruction</b></p>
             <p>1. Pair your Phone with the Connection Machine</p>
             <p>2. Select the connection machine</p>
-            <select id="cm_select"></select><br />
-            <button id="connect_cm" onclick="connectToCM()">CONNECT</button>
-        </div>  
+            <select id="cm_select" style="width: 100%"></select>
+            <p>3. Press the connect button</p>
+            <button id="connect_cm" onclick="connectToCM()" style="width: 100%">connect</button>           
+        </div> 
+        
+        
 
-        <div id="canvasPage" style="display:none">
-            <canvas id="gol-canvas"></canvas>
+        <div id="canvasPage" class="content" style="display:none">
+            <canvas id="gol-canvas"></canvas><br />
+            <button id="start_gol" onclick="startGame()">start</button>
+            <button id="stop_gol" onclick="stopGame()">stop</button>
+            <button id="clear_gol" onclick="clearGame()">clear</button> <br />
+            <input id="gol_speed" type="range" min="500" max="2000" onchange="setGolSpeed(this.value)"/> 
         </div>
+        
         
     </body>
 </html>

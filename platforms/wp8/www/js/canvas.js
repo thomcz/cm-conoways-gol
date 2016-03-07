@@ -10,16 +10,16 @@ function createGolField() {
     canvas = document.getElementById("gol-canvas");
     ctx = canvas.getContext("2d");
 
-    size = ~~(window.innerWidth / 24);
+    size = ~~((window.innerWidth - (window.innerWidth * 0.15))  / 24);
     ctx.canvas.width = size * 24;
     ctx.canvas.height = size * 24;
     // how many cells fit on the canvas
     w = 24;
     h = 24;
     // create empty state array
-    state = new Array(h);
-    for (var y = 0; y < h; ++y) {
-        state[y] = new Array(w);
+    state = [];
+    for (var i = 0; i < h; i++) {
+        state[i] = [];
     }
     canvas.addEventListener("click", click);
     drawBox();
@@ -29,6 +29,19 @@ function createGolField() {
 function fill(s, gx, gy) {
     ctx.fillStyle = s;
     ctx.fillRect(gx * size + 1, gy * size + 1, size - 2, size - 2);
+}
+
+function setGolCanvas() {
+    for (var x = 0; x < 24; x++) {
+        for (var y = 0; y < 24; y++) {
+            state[y][x] = newGameState[y][x] == living;
+            if (state[y][x]) {
+                fill("black", x, y);
+            } else {
+                fill("white", x, y);
+            }
+        }
+    }
 }
 
 function click(e) {
@@ -46,11 +59,11 @@ function click(e) {
     if (state[gy][gx]) {
         state[gy][gx] = false;
         fill("white", gx, gy);
-        sendData(gy, gx, 0);
+        sendData(gy, gx, dead);
     } else {
         state[gy][gx] = true;
         fill("black", gx, gy);
-        sendData(gy, gx, 200);
+        sendData(gy, gx, living);
     }
 }
 

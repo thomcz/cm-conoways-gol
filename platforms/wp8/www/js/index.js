@@ -7,14 +7,17 @@
 //var macAddress;
 var buffer;
 var matrix;
+var connectBtn;
+var maxFPS = 1;
 // Start listening for the deviceready-Event.
 function initialize() {
-	document.addEventListener('deviceready', onDeviceReady, false);
+    document.addEventListener('deviceready', onDeviceReady, false);    
 }
 
 // Event received. We may now use PhoneGap APIs.
 function onDeviceReady() {
     initMartix();
+    connectBtn = document.getElementById("connect_cm");
 	bluetoothSerial.list(listSuccess, listFailure);
 }
 
@@ -29,7 +32,7 @@ function listSuccess(pairedDevices) {
     }
 }
 function connectToCM(btn) {
-    document.getElementById("connect_cm").disabled = true;
+    connectBtn.disabled = true;
     var cmSelect = document.getElementById("cm_select");
     var options = cmSelect.options;
     var selectedIndex = cmSelect.selectedIndex;
@@ -41,14 +44,13 @@ function connectToCM(btn) {
 
 // Called when listing of bonded devices fails.
 function listFailure() {	
-	alert("Couldn't list paired devices. Check if your bluetooth is on");
-	///console.log('Listing bonded devices failed.');
+    alert("Couldn't list paired devices. Check if your bluetooth is on");
+    connectBtn.innerHTML = "connect";
 }
 
 // Called when connection to device is established.
 function connectSuccess() {
-	alert("conn succ");
-	
+    connectBtn.innerHTML = "initiate handshake";
 	// Write handshake.
 	handshake();
 }
@@ -57,12 +59,12 @@ function connectSuccess() {
 function connectFailure() {
     alert("could not connect to selected connection machine. Check the steps above!");
     document.getElementById("connect_cm").disabled = false;
+    connectBtn.innerHTML = "connect";
 }
 
 // This function will try to initiate the handshake as described in
 // http://www.teco.edu/wp-content/uploads/2014/10/teco_led_matrix_protocol.pdf
 function handshake() {
-	alert("handshake");
 	var version = 1;
 	var xSize = 24;
 	var ySize = 24;
@@ -87,14 +89,14 @@ function handshake() {
 	}
 	
 	// Send and initiate handshake.
-	console.log("Sending: " + matrix);
 	bluetoothSerial.write(matrix.buffer, sendHandshakeSuccess, sendHandshakeFailure);
 }
 
 // Called when bluetooth send (handshake) fails.
 function sendHandshakeFailure() {
     alert("Handshake write failed. Try Again!");
-    document.getElementById("connect_cm").disabled = false;
+    
+    connectBtn.innerHTML = "connect";
 }
 
 // Called when bluetooth send (handshake) was successful.
@@ -107,12 +109,15 @@ function sendHandshakeSuccess() {
 // Called when reading of handshake response fails.
 function handshakeReadFailure() {
     alert("Handshake read failed. Try Again!");
+    document.getElementById("connect_cm").disabled = false;
+    connectBtn.innerHTML = "connect";
 }
 
 // Called when reading of handshake response was successful.
 function handshakeReadSuccess(resp) {
-	alert("hand read succ");
+    connectBtn.innerHTML = "connection established";
     //location.assign("menu.html");
+    maxFPS = resp.charCodeAt(1);
 	document.getElementById("indexPage").style.display = "none";
 	document.getElementById("canvasPage").style.display = "block";
 	createGolField();
@@ -131,7 +136,14 @@ function sendData(x, y, value) {
     matrix[x * 24 + y] = value;
     bluetoothSerial.write(matrix.buffer, sendSuccess, sendFailure);
 }
-
+function sendGameState(gameState) {
+    for (var i = 0; i < 24; i++) {
+        for (var j = 0; j < 24; j++) {
+            matrix[i * 24 + j] = gameState[i][j];
+        }
+    }
+    bluetoothSerial.write(matrix.buffer, sendSuccess, sendFailure);
+}
 // Called when sending of frame to CM was successful.
 function sendSuccess() {
 	//alert("write succ");
