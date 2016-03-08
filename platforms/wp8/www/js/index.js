@@ -8,6 +8,7 @@
 var buffer;
 var matrix;
 var connectBtn;
+//because don't divide by 0
 var maxFPS = 1;
 // Start listening for the deviceready-Event.
 function initialize() {
@@ -21,7 +22,8 @@ function onDeviceReady() {
 	bluetoothSerial.list(listSuccess, listFailure);
 }
 
-// Gets called when list of bonded devices was received.
+// Gets called when list of bonded devices was received. It gets all
+// paired devices of the phone and make a list for the user.
 function listSuccess(pairedDevices) {
     var cmSelect = document.getElementById("cm_select");
     for (var i = 0; i < pairedDevices.length; i++) {
@@ -31,6 +33,8 @@ function listSuccess(pairedDevices) {
         cmSelect.add(option);
     }
 }
+
+// tries to connect to the cm after the user clicked the connect button.
 function connectToCM(btn) {
     connectBtn.disabled = true;
     var cmSelect = document.getElementById("cm_select");
@@ -48,7 +52,7 @@ function listFailure() {
     connectBtn.innerHTML = "connect";
 }
 
-// Called when connection to device is established.
+// Called when connection to device is established and initiate handshake.
 function connectSuccess() {
     connectBtn.innerHTML = "initiate handshake";
 	// Write handshake.
@@ -101,7 +105,7 @@ function sendHandshakeFailure() {
 
 // Called when bluetooth send (handshake) was successful.
 function sendHandshakeSuccess() {
-	//alert("hand succ");
+    connectBtn.innerHTML = "handshake was successful";
 	// Wait 1-2 seconds for handshake response, then read it.
 	setTimeout(function() { bluetoothSerial.read(handshakeReadSuccess, handshakeReadFailure)}, 2000);
 }
@@ -116,13 +120,18 @@ function handshakeReadFailure() {
 // Called when reading of handshake response was successful.
 function handshakeReadSuccess(resp) {
     connectBtn.innerHTML = "connection established";
-    //location.assign("menu.html");
     maxFPS = resp.charCodeAt(1);
-	document.getElementById("indexPage").style.display = "none";
-	document.getElementById("canvasPage").style.display = "block";
-	createGolField();
+    changePage("indexPage", "golMainPage");
+    initCanvasas();
 }
 
+// Hides the oldPage and shows the newPage.
+function changePage(oldPage, newPage) {
+    document.getElementById(oldPage).style.display = "none";
+    document.getElementById(newPage).style.display = "block";
+}
+
+// initiate empty cm matrix.
 function initMartix() {
     buffer = new ArrayBuffer(576);
     matrix = new Uint8Array(buffer);
@@ -132,10 +141,14 @@ function initMartix() {
         }
     }
 }
-function sendData(x, y, value) {
+
+//sends single cell to the cm.
+function sendData(x, y, value) {    
     matrix[x * 24 + y] = value;
     bluetoothSerial.write(matrix.buffer, sendSuccess, sendFailure);
 }
+
+//sends whole game state (matrix) to the cm.
 function sendGameState(gameState) {
     for (var i = 0; i < 24; i++) {
         for (var j = 0; j < 24; j++) {
@@ -144,15 +157,14 @@ function sendGameState(gameState) {
     }
     bluetoothSerial.write(matrix.buffer, sendSuccess, sendFailure);
 }
+
 // Called when sending of frame to CM was successful.
 function sendSuccess() {
-	//alert("write succ");
 	console.log('Received Events: ' + 'sendSuccess');
 }
 
 // Called when sending of frame to CM fails.
 function sendFailure() {
-	//alert("write fail");
 	console.log('Received Events: ' + 'sendFailure');
 }
 

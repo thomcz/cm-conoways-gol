@@ -12,7 +12,7 @@
         <script type="text/javascript" src="js/canvas.js"></script>
         <script type="text/javascript" src="js/gol.js"></script>
         
-        <link href='https://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'>
+        <!--<link href='https://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'>-->
         <link rel="stylesheet" type="text/css" href="css/index.css" />
         <title>Hello World</title>
     </head>
@@ -29,14 +29,24 @@
             <button id="connect_cm" onclick="connectToCM()" style="width: 100%">connect</button>           
         </div> 
         
+        <div id="golMainPage" class="content" style="display:none">
+            <canvas id="gol-canvas-tl" data-offsetx="0" data-offsety="0"></canvas>
+            <canvas id="gol-canvas-tr" data-offsetx="12" data-offsety="0"></canvas>
+            <br />
+            <canvas id="gol-canvas-bl" data-offsetx="0" data-offsety="12"></canvas>
+            <canvas id="gol-canvas-br" data-offsetx="12" data-offsety="12"></canvas>
+
+            <button id="start_gol" onclick="startGame()">start</button>
+            <button id="stop_gol" onclick="stopGame()">stop</button>
+            <button id="clear_gol" onclick="clearGame()">clear</button> <br /><br />
+            <label for="gol_speed">Game speed:</label>
+            <input id="gol_speed" type="range" min="500" max="2000" onchange="setGolSpeed(this.value)" /> 
+        </div>
         
 
         <div id="canvasPage" class="content" style="display:none">
             <canvas id="gol-canvas"></canvas><br />
-            <button id="start_gol" onclick="startGame()">start</button>
-            <button id="stop_gol" onclick="stopGame()">stop</button>
-            <button id="clear_gol" onclick="clearGame()">clear</button> <br />
-            <input id="gol_speed" type="range" min="500" max="2000" onchange="setGolSpeed(this.value)"/> 
+            <button id="return" onclick="returnToMainPage()" style="width: 100%">save and return</button>
         </div>
         
         

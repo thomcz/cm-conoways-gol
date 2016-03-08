@@ -1,5 +1,5 @@
 body {
-    font-family: 'Roboto', sans-serif;
+    font-family: sans-serif;
 }
 header {
     width: 100%;
@@ -12,7 +12,7 @@ header {
     left:0;
 }
 canvas {
-	display: block;
+	display: inline-block;
     margin: 0 auto;
 	border:1px solid #888;
 }

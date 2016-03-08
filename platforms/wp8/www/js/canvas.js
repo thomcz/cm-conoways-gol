@@ -1,87 +1,159 @@
-﻿var size;
-var canvas;
+﻿//size of a cell in the canvas if the canvas should show 24 columns and rows 
+var size_24;
+//size of a cell in the canvas if the canvas should show 12 columns and rows 
+var size_12;
+//context of the canvas the user can set fields.
 var ctx;
-var w;
-var h;
+//count of rows and columns of the quadratic field.
+var length = 24;
+//the fill state of the cells of all canvases.
 var state;
+//the actual selected canvas.
+var actualCanvas;
+//array of all 4 canvases that represent one part of the cm.
+var mainCanvasas;
 
-function createGolField() {
-    // block size`
-    canvas = document.getElementById("gol-canvas");
+// intitiate canvases.
+function initCanvasas() {
+    //put all canvases in an array
+    mainCanvasas = [];
+    mainCanvasas.push(document.getElementById("gol-canvas-tl"));
+    mainCanvasas.push(document.getElementById("gol-canvas-tr"));
+    mainCanvasas.push(document.getElementById("gol-canvas-bl"));
+    mainCanvasas.push(document.getElementById("gol-canvas-br"));
+
+    //resize them to fit into the screen
+    size_24 = ~~((window.innerWidth - (window.innerWidth * 0.15)) / length);
+    for (var i = 0; i < mainCanvasas.length; i++) {
+        var ctx = mainCanvasas[i].getContext("2d");
+        ctx.canvas.width = size_24 * (length / 2);
+        ctx.canvas.height = size_24 * (length / 2);
+
+        mainCanvasas[i].addEventListener("click", selectCanvas);
+    }
+    intitGolField();
+}
+
+// initiate the canvas the user can interact an set single cells.
+function intitGolField() {
+    var canvas = document.getElementById("gol-canvas");
     ctx = canvas.getContext("2d");
 
-    size = ~~((window.innerWidth - (window.innerWidth * 0.15))  / 24);
-    ctx.canvas.width = size * 24;
-    ctx.canvas.height = size * 24;
-    // how many cells fit on the canvas
-    w = 24;
-    h = 24;
+    //set the size of the canvas to fit into the screen.
+    size_12 = ~~((window.innerWidth - (window.innerWidth * 0.15)) / (length / 2));
+
+    ctx.canvas.width = size_12 * (length / 2);
+    ctx.canvas.height = size_12 * (length / 2);
+
     // create empty state array
     state = [];
-    for (var i = 0; i < h; i++) {
+    for (var i = 0; i < length; i++) {
         state[i] = [];
     }
     canvas.addEventListener("click", click);
     drawBox();
 }
 
-// quick fill function to save repeating myself later
-function fill(s, gx, gy) {
-    ctx.fillStyle = s;
-    ctx.fillRect(gx * size + 1, gy * size + 1, size - 2, size - 2);
+// returns to the gol main page.
+function returnToMainPage() {
+    changePage("canvasPage", "golMainPage");
+    fillMainCanvases();
 }
 
-function setGolCanvas() {
-    for (var x = 0; x < 24; x++) {
-        for (var y = 0; y < 24; y++) {
-            state[y][x] = newGameState[y][x] == living;
-            if (state[y][x]) {
-                fill("black", x, y);
+// shows actual state of the game on the 4 canvases.
+function fillMainCanvases() {
+    for (var i = 0; i < 4; i++) {
+        var canvas = mainCanvasas[i];
+        fillCanvas(canvas, canvas.getContext("2d"), size_24);
+    }
+}
+
+// fill the cells of a canvas.
+function fillCanvas(canvas, context, size) {
+    for (var x = 0; x < (length / 2); x++) {
+        for (var y = 0; y < (length / 2); y++) {
+            var offsetX = parseInt(canvas.getAttribute("data-offsetx"));
+            var offsetY = parseInt(canvas.getAttribute("data-offsety"));
+            if (state[y + offsetY][x + offsetX]) {
+                fill(context, size, "black", x, y);
             } else {
-                fill("white", x, y);
+                fill(context, size, "white", x, y);
             }
         }
     }
 }
 
+// after clicking on a canvas it gets bigger and allows the user to set cells.
+function selectCanvas(e) {
+    changePage("golMainPage", "canvasPage");
+    actualCanvas = e.target;
+    fillCanvas(actualCanvas, ctx, size_12);
+}
+
+// fill function that fills a given cell (x,y) with a given color.
+function fill(context, size, color, x, y) {
+    context.fillStyle = color;
+    context.fillRect(x * size + 1, y * size + 1, size - 2, size - 2);
+}
+
+//draw the actual game state on the main canvases
+function setGolCanvas() {
+    for (var x = 0; x < length; x++) {
+        for (var y = 0; y < length; y++) {
+            state[y][x] = newGameState[y][x] == living;            
+        }
+    }
+    fillMainCanvases();
+}
+
+// fills the clicked cell.
 function click(e) {
     // get mouse click position
     var mx = e.offsetX;
     var my = e.offsetY;
-    // calculate grid square numbers
-    var gx = ~~(mx / size);
-    var gy = ~~(my / size);
+    // calculate cell numbers
+    var x = ~~(mx / size_12);
+    var y = ~~(my / size_12);
 
     // make sure we're in bounds
-    if (gx < 0 || gx >= w || gy < 0 || gy >= h) {
+    if (x < 0 || x >= length || y < 0 || y >= length) {
         return;
     }
-    if (state[gy][gx]) {
-        state[gy][gx] = false;
-        fill("white", gx, gy);
-        sendData(gy, gx, dead);
+
+    //get offset of the actual canvas we are working on.
+    var offsetX = parseInt(actualCanvas.getAttribute("data-offsetx"));
+    var offsetY = parseInt(actualCanvas.getAttribute("data-offsety"));
+
+    var context = e.target.getContext("2d");
+    //fill or unfill the cell 
+    if (state[y + offsetY][x + offsetX]) {
+        state[y + offsetY][x + offsetX] = false;
+        fill(context, size_12, "white", x, y);
+        sendData(y + offsetY, x + offsetX, dead);
     } else {
-        state[gy][gx] = true;
-        fill("black", gx, gy);
-        sendData(gy, gx, living);
+        state[y + offsetY][x + offsetX] = true;
+        fill(context, size_12, "black", x, y);
+        sendData(y + offsetY, x + offsetX, living);
     }
 }
 
+// draw grid on the canvas the user interact with.
 function drawBox() {
     ctx.beginPath();
-    //ctx.fillStyle = "white";
     ctx.lineWidth = 1;
     ctx.strokeStyle = "black";
-    for (var i = 0; i <= 24; i++) {
+    for (var i = 0; i <= (length / 2); i++) {
         ctx.beginPath();
         //draw columns
-        drawLine(0, i * size, ctx.canvas.width, i * size);
+        drawLine(0, i * size_12, ctx.canvas.width, i * size_12);
         //draw rows
-        drawLine(i * size, 0, i * size, ctx.canvas.width);
+        drawLine(i * size_12, 0, i * size_12, ctx.canvas.width);
         ctx.stroke();
     }
     ctx.closePath();
 }
+
+// draw a line from (x1,y1) to (x2, y2).
 function drawLine(x1, y1, x2, y2) {
     ctx.moveTo(x1, y1);
     ctx.lineTo(x2, y2);
