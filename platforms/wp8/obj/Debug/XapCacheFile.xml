@@ -1,16 +1,17 @@
-﻿<xapCache source="D:\bwSyncAndShare\Programmieren\cm-conoways-gol\platforms\wp8\Bin\Debug\mobilecomputing.connectionmachine.gol.xap" wasSigned="False" wasTritonized="False" certificateThumbprint="" TimeStampUrl="" signKeyFile="" signKeyPassword="" lastWriteTime="09.03.2016 00:16:32">
-  <file source="D:\bwSyncAndShare\Programmieren\cm-conoways-gol\platforms\wp8\obj\Debug\mobilecomputing.connectionmachine.gol.dll" archivePath="mobilecomputing.connectionmachine.gol.dll" lastWriteTime="07.03.2016 20:52:40" />
+﻿<xapCache source="D:\bwSyncAndShare\Programmieren\cm-conoways-gol\platforms\wp8\Bin\Debug\mobilecomputing.connectionmachine.gol.xap" wasSigned="False" wasTritonized="False" certificateThumbprint="" TimeStampUrl="" signKeyFile="" signKeyPassword="" lastWriteTime="09.03.2016 21:19:37">
+  <file source="D:\bwSyncAndShare\Programmieren\cm-conoways-gol\platforms\wp8\obj\Debug\mobilecomputing.connectionmachine.gol.dll" archivePath="mobilecomputing.connectionmachine.gol.dll" lastWriteTime="09.03.2016 21:03:34" />
   <file source="D:\bwSyncAndShare\Programmieren\cm-conoways-gol\platforms\wp8\config.xml" archivePath="config.xml" lastWriteTime="06.03.2016 21:06:28" />
   <file source="D:\bwSyncAndShare\Programmieren\cm-conoways-gol\platforms\wp8\www\cordova-js-src\exec.js" archivePath="www\cordova-js-src\exec.js" lastWriteTime="06.03.2016 21:06:28" />
   <file source="D:\bwSyncAndShare\Programmieren\cm-conoways-gol\platforms\wp8\www\cordova-js-src\platform.js" archivePath="www\cordova-js-src\platform.js" lastWriteTime="06.03.2016 21:06:28" />
   <file source="D:\bwSyncAndShare\Programmieren\cm-conoways-gol\platforms\wp8\www\cordova.js" archivePath="www\cordova.js" lastWriteTime="06.03.2016 21:06:28" />
   <file source="D:\bwSyncAndShare\Programmieren\cm-conoways-gol\platforms\wp8\www\cordova_plugins.js" archivePath="www\cordova_plugins.js" lastWriteTime="06.03.2016 21:06:28" />
-  <file source="D:\bwSyncAndShare\Programmieren\cm-conoways-gol\platforms\wp8\www\css\index.css" archivePath="www\css\index.css" lastWriteTime="09.03.2016 00:16:28" />
+  <file source="D:\bwSyncAndShare\Programmieren\cm-conoways-gol\platforms\wp8\www\css\index.css" archivePath="www\css\index.css" lastWriteTime="09.03.2016 21:19:23" />
   <file source="D:\bwSyncAndShare\Programmieren\cm-conoways-gol\platforms\wp8\www\icon.png" archivePath="www\icon.png" lastWriteTime="06.03.2016 21:06:28" />
   <file source="D:\bwSyncAndShare\Programmieren\cm-conoways-gol\platforms\wp8\www\img\logo.png" archivePath="www\img\logo.png" lastWriteTime="06.03.2016 21:06:28" />
-  <file source="D:\bwSyncAndShare\Programmieren\cm-conoways-gol\platforms\wp8\www\index.html" archivePath="www\index.html" lastWriteTime="09.03.2016 00:15:31" />
-  <file source="D:\bwSyncAndShare\Programmieren\cm-conoways-gol\platforms\wp8\www\js\gol.js" archivePath="www\js\gol.js" lastWriteTime="08.03.2016 23:37:53" />
-  <file source="D:\bwSyncAndShare\Programmieren\cm-conoways-gol\platforms\wp8\www\js\index.js" archivePath="www\js\index.js" lastWriteTime="09.03.2016 00:09:37" />
+  <file source="D:\bwSyncAndShare\Programmieren\cm-conoways-gol\platforms\wp8\www\index.html" archivePath="www\index.html" lastWriteTime="09.03.2016 21:19:31" />
+  <file source="D:\bwSyncAndShare\Programmieren\cm-conoways-gol\platforms\wp8\www\js\figures.js" archivePath="www\js\figures.js" lastWriteTime="09.03.2016 20:58:33" />
+  <file source="D:\bwSyncAndShare\Programmieren\cm-conoways-gol\platforms\wp8\www\js\gol.js" archivePath="www\js\gol.js" lastWriteTime="09.03.2016 21:15:05" />
+  <file source="D:\bwSyncAndShare\Programmieren\cm-conoways-gol\platforms\wp8\www\js\index.js" archivePath="www\js\index.js" lastWriteTime="09.03.2016 21:14:54" />
   <file source="D:\bwSyncAndShare\Programmieren\cm-conoways-gol\platforms\wp8\www\plugins\cordova-plugin-bluetooth-serial\www\bluetoothSerial.js" archivePath="www\plugins\cordova-plugin-bluetooth-serial\www\bluetoothSerial.js" lastWriteTime="06.03.2016 21:06:28" />
   <file source="D:\bwSyncAndShare\Programmieren\cm-conoways-gol\platforms\wp8\www\res\.pgbomit" archivePath="www\res\.pgbomit" lastWriteTime="06.03.2016 21:06:28" />
   <file source="D:\bwSyncAndShare\Programmieren\cm-conoways-gol\platforms\wp8\www\res\icon\android\icon-36-ldpi.png" archivePath="www\res\icon\android\icon-36-ldpi.png" lastWriteTime="06.03.2016 21:06:28" />
@@ -63,7 +64,7 @@
   <file source="D:\bwSyncAndShare\Programmieren\cm-conoways-gol\platforms\wp8\www\spec\lib\jasmine-1.2.0\jasmine.css" archivePath="www\spec\lib\jasmine-1.2.0\jasmine.css" lastWriteTime="06.03.2016 21:06:28" />
   <file source="D:\bwSyncAndShare\Programmieren\cm-conoways-gol\platforms\wp8\www\spec\lib\jasmine-1.2.0\jasmine.js" archivePath="www\spec\lib\jasmine-1.2.0\jasmine.js" lastWriteTime="06.03.2016 21:06:28" />
   <file source="D:\bwSyncAndShare\Programmieren\cm-conoways-gol\platforms\wp8\www\spec\lib\jasmine-1.2.0\MIT.LICENSE" archivePath="www\spec\lib\jasmine-1.2.0\MIT.LICENSE" lastWriteTime="06.03.2016 21:06:28" />
-  <file source="D:\bwSyncAndShare\Programmieren\cm-conoways-gol\platforms\wp8\www\js\canvas.js" archivePath="www\js\canvas.js" lastWriteTime="09.03.2016 00:10:03" />
+  <file source="D:\bwSyncAndShare\Programmieren\cm-conoways-gol\platforms\wp8\www\js\canvas.js" archivePath="www\js\canvas.js" lastWriteTime="09.03.2016 21:13:59" />
   <file source="D:\bwSyncAndShare\Programmieren\cm-conoways-gol\platforms\wp8\Images\appbar.back.rest.png" archivePath="Images\appbar.back.rest.png" lastWriteTime="06.03.2016 21:06:27" />
   <file source="D:\bwSyncAndShare\Programmieren\cm-conoways-gol\platforms\wp8\Images\appbar.close.rest.png" archivePath="Images\appbar.close.rest.png" lastWriteTime="06.03.2016 21:06:27" />
   <file source="D:\bwSyncAndShare\Programmieren\cm-conoways-gol\platforms\wp8\Images\appbar.feature.video.rest.png" archivePath="Images\appbar.feature.video.rest.png" lastWriteTime="06.03.2016 21:06:27" />

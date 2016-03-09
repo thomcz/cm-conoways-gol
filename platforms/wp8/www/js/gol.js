@@ -38,8 +38,8 @@ function initTempStateMatrix() {
 
 //starts the gol.
 function startGame() {
-    initTempStateMatrix();
-    stopGame;
+    //initTempStateMatrix();
+    stopGame();
     interval = setInterval(gameStep, golSpeed);
 }
 
@@ -48,10 +48,12 @@ function stopGame() {
     clearInterval(interval);
 }
 
-//TODO
+// clears the complete game.
 function clearGame() {
     stopGame();
     initTempStateMatrix();
+    initStateArray();
+    fillMainCanvases();
     sendGameState(newGameState);
 }
 

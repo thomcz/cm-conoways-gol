@@ -21,3 +21,17 @@ canvas {
     margin: 0 auto;
     padding: 60px 0;
 }
+#canvasPage {
+    display:none;
+}
+
+#golMainPage {
+    display:none;
+}
+
+#connect_cm {
+    width: 100%;
+}
+select {
+    width: 100%;
+}

@@ -123,6 +123,7 @@ function handshakeReadSuccess(resp) {
     maxFPS = resp.charCodeAt(1);
     changePage("indexPage", "golMainPage");
     initCanvasas();
+    initTempStateMatrix();
 }
 
 // Hides the oldPage and shows the newPage.

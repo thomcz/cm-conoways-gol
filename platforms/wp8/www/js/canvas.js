@@ -46,12 +46,29 @@ function intitGolField() {
     ctx.canvas.height = size_12 * (length / 2);
 
     // create empty state array
+    initStateArray();
+    
+    canvas.addEventListener("click", click);
+    drawBox();
+}
+
+function createRandomGame() {
+    for (var x = 0; x < state.length; x++) {
+        for (var y = 0; y < state.length; y++) {
+            var rand = Math.round(Math.random());
+            state[x][y] = rand == 1;
+            newGameState[x][y] = rand * living;
+        }
+    }
+    fillMainCanvases();
+    sendGameState(newGameState);
+}
+
+function initStateArray() {
     state = [];
     for (var i = 0; i < length; i++) {
         state[i] = [];
     }
-    canvas.addEventListener("click", click);
-    drawBox();
 }
 
 // returns to the gol main page.
@@ -85,6 +102,7 @@ function fillCanvas(canvas, context, size) {
 
 // after clicking on a canvas it gets bigger and allows the user to set cells.
 function selectCanvas(e) {
+    stopGame();
     changePage("golMainPage", "canvasPage");
     actualCanvas = e.target;
     fillCanvas(actualCanvas, ctx, size_12);

@@ -24,12 +24,12 @@
             <p><b>Instruction</b></p>
             <p>1. Pair your Phone with the Connection Machine</p>
             <p>2. Select the connection machine</p>
-            <select id="cm_select" style="width: 100%"></select>
+            <select id="cm_select"></select>
             <p>3. Press the connect button</p>
-            <button id="connect_cm" onclick="connectToCM()" style="width: 100%">connect</button>           
+            <button id="connect_cm" onclick="connectToCM()">connect</button>           
         </div> 
         
-        <div id="golMainPage" class="content" style="display:none">
+        <div id="golMainPage" class="content">
             <canvas id="gol-canvas-tl" data-offsetx="0" data-offsety="0"></canvas>
             <canvas id="gol-canvas-tr" data-offsetx="12" data-offsety="0"></canvas>
             <br />
@@ -38,15 +38,16 @@
 
             <button id="start_gol" onclick="startGame()">start</button>
             <button id="stop_gol" onclick="stopGame()">stop</button>
-            <button id="clear_gol" onclick="clearGame()">clear</button> <br /><br />
+            <button id="clear_gol" onclick="clearGame()">clear</button>
+            <button id="clear_gol" onclick="createRandomGame()">random</button> <br /><br />
             <label for="gol_speed">Game speed:</label>
             <input id="gol_speed" type="range" min="500" max="2000" onchange="setGolSpeed(this.value)" /> 
         </div>
         
 
-        <div id="canvasPage" class="content" style="display:none">
-            <canvas id="gol-canvas"></canvas><br />
-            <button id="return" onclick="returnToMainPage()" style="width: 100%">save and return</button>
+        <div id="canvasPage" class="content">
+            <canvas id="gol-canvas"></canvas><br /><br /><br />
+            <button id="return" onclick="returnToMainPage()">save and return</button>
         </div>
         
         
