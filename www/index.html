@@ -1,24 +1,5 @@
-<!DOCTYPE html>
-<!--
-    Copyright (c) 2012-2014 Adobe Systems Incorporated. All rights reserved.
+﻿<!DOCTYPE html>
 
-    Licensed to the Apache Software Foundation (ASF) under one
-    or more contributor license agreements.  See the NOTICE file
-    distributed with this work for additional information
-    regarding copyright ownership.  The ASF licenses this file
-    to you under the Apache License, Version 2.0 (the
-    "License"); you may not use this file except in compliance
-    with the License.  You may obtain a copy of the License at
-
-    http://www.apache.org/licenses/LICENSE-2.0
-
-    Unless required by applicable law or agreed to in writing,
-    software distributed under the License is distributed on an
-    "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
-     KIND, either express or implied.  See the License for the
-    specific language governing permissions and limitations
-    under the License.
--->
 <html>
     <head>
         <meta charset="utf-8" />
@@ -26,21 +7,49 @@
         <meta name="msapplication-tap-highlight" content="no" />
         <!-- WARNING: for iOS 7, remove the width=device-width and height=device-height attributes. See https://issues.apache.org/jira/browse/CB-4323 -->
         <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi" />
+        <script type="text/javascript" src="cordova.js"></script>
+        <script type="text/javascript" src="js/index.js"></script>
+        <script type="text/javascript" src="js/canvas.js"></script>
+        <script type="text/javascript" src="js/gol.js"></script>
+        
+        <!--<link href='https://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'>-->
         <link rel="stylesheet" type="text/css" href="css/index.css" />
         <title>Hello World</title>
     </head>
-    <body>
-        <div class="app">
-            <h1>PhoneGap</h1>
-            <div id="someContent" class="blink">
-                <p class="event listening">Connecting to something</p>
-                <p class="event received">Device is Ready</p>
-            </div>
+    <body onload="initialize()">
+        <header>
+            <h3>Conoways Game of Life</h3>
+        </header>
+        <div id="indexPage" class="content">
+            <p><b>Instruction</b></p>
+            <p>1. Pair your Phone with the Connection Machine</p>
+            <p>2. Select the connection machine</p>
+            <select id="cm_select"></select>
+            <p>3. Press the connect button</p>
+            <button id="connect_cm" onclick="connectToCM()">connect</button>           
+        </div> 
+        
+        <div id="golMainPage" class="content">
+            <canvas id="gol-canvas-tl" data-offsetx="0" data-offsety="0"></canvas>
+            <canvas id="gol-canvas-tr" data-offsetx="12" data-offsety="0"></canvas>
+            <br />
+            <canvas id="gol-canvas-bl" data-offsetx="0" data-offsety="12"></canvas>
+            <canvas id="gol-canvas-br" data-offsetx="12" data-offsety="12"></canvas>
+
+            <button id="start_gol" onclick="startGame()">start</button>
+            <button id="stop_gol" onclick="stopGame()">stop</button>
+            <button id="clear_gol" onclick="clearGame()">clear</button>
+            <button id="clear_gol" onclick="createRandomGame()">random</button> <br /><br />
+            <label for="gol_speed">Game speed:</label>
+            <input id="gol_speed" type="range" min="500" max="2000" onchange="setGolSpeed(this.value)" /> 
         </div>
-        <script type="text/javascript" src="cordova.js"></script>
-        <script type="text/javascript" src="js/index.js"></script>
-        <script type="text/javascript">
-            initialize();
-        </script>
+        
+
+        <div id="canvasPage" class="content">
+            <canvas id="gol-canvas"></canvas><br /><br /><br />
+            <button id="return" onclick="returnToMainPage()">save and return</button>
+        </div>
+        
+        
     </body>
 </html>
